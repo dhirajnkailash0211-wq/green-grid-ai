@@ -731,12 +731,17 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     let rainfallRecords = []; let rainfallLoadError = null;
-    const sample = {lat: -33.827221495786205, lng: 151.00731094266897, depth: 2.734}; const bounds = [[-33.83171749644788, 150.99339299908698], [-33.822828535078706, 151.02324556380842]]; const map = L.map('map', {scrollWheelZoom: true}).fitBounds(bounds, {padding: [20, 20]}); // CARTO Positron basemap. Keep the required provider and OSM attribution.
+    const sample = {lat: -33.827221495786205, lng: 151.00731094266897, depth: 2.734}; const bounds = [[-33.83171749644788, 150.99339299908698], [-33.822828535078706, 151.02324556380842]]; const map = L.map('map', {scrollWheelZoom: true}).fitBounds(bounds, {padding: [20, 20]}); // MapTiler basemap. Keep attribution.
     // If map tiles are unavailable, Leaflet markers and selection remain usable.
-    const basemap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      subdomains: 'abcd', maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-    }).addTo(map);
+    const MAPTILER_KEY = '1ABXJSsf1JI7jftxNBv4';
+    const basemap = L.tileLayer(
+      `https://api.maptiler.com/maps/streets-v4/{z}/{x}/{y}.png?key=${MAPTILER_KEY}`,
+      {
+        tileSize: 512,
+        zoomOffset: -1,
+        attribution: '&copy; MapTiler &copy; OpenStreetMap contributors'
+      }
+    ).addTo(map);
     let tileFailures = 0;
     basemap.on('tileerror', () => {
       tileFailures++;
