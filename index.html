@@ -731,7 +731,27 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
     let rainfallRecords = []; let rainfallLoadError = null;
-    const sample = {lat: -33.827221495786205, lng: 151.00731094266897, depth: 2.734}; const bounds = [[-33.83171749644788, 150.99339299908698], [-33.822828535078706, 151.02324556380842]]; const map = L.map('map', {scrollWheelZoom: true}).fitBounds(bounds, {padding: [20, 20]}); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '© OpenStreetMap contributors', maxZoom: 19}).addTo(map); L.rectangle(bounds, {color: '#209d78', weight: 2, fillOpacity: .035}).addTo(map); let marker = L.circleMarker([sample.lat, sample.lng], {radius: 9, color: '#fff', weight: 3, fillColor: '#159c6b', fillOpacity: 1}).addTo(map).bindPopup('Interpolated 5% AEP sample: 2.734 m predicted depth').openPopup(); let selected = {...sample}; let atSample = true;
+    const sample = {lat: -33.827221495786205, lng: 151.00731094266897, depth: 2.734}; const bounds = [[-33.83171749644788, 150.99339299908698], [-33.822828535078706, 151.02324556380842]]; const map = L.map('map', {scrollWheelZoom: true}).fitBounds(bounds, {padding: [20, 20]}); // CARTO Positron basemap. Keep the required provider and OSM attribution.
+    // If map tiles are unavailable, Leaflet markers and selection remain usable.
+    const basemap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      subdomains: 'abcd', maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    }).addTo(map);
+    let tileFailures = 0;
+    basemap.on('tileerror', () => {
+      tileFailures++;
+      if (tileFailures === 3) {
+        map.getContainer().style.background = '#e8f1ec';
+        const notice = L.control({position: 'topright'});
+        notice.onAdd = () => {
+          const el = L.DomUtil.create('div');
+          el.style.cssText = 'background:white;padding:8px 12px;border-radius:8px;box-shadow:0 1px 6px #0002;max-width:220px;font:13px/1.4 sans-serif';
+          el.textContent = 'Background map unavailable. Sample points and location selection still work.';
+          return el;
+        };
+        notice.addTo(map);
+      }
+    }); L.rectangle(bounds, {color: '#209d78', weight: 2, fillOpacity: .035}).addTo(map); let marker = L.circleMarker([sample.lat, sample.lng], {radius: 9, color: '#fff', weight: 3, fillColor: '#159c6b', fillOpacity: 1}).addTo(map).bindPopup('Interpolated 5% AEP sample: 2.734 m predicted depth').openPopup(); let selected = {...sample}; let atSample = true;
     const weightSpecs = [['safety', 'Community safety', 40], ['affordability', 'Affordability', 25], ['environment', 'Environmental benefit', 20], ['speed', 'Implementation speed', 15]]; document.getElementById('sliders').innerHTML = weightSpecs.map(([id, label, value]) => `<div class="field"><div class="sliderhead"><label for="${id}">${label}</label><b id="${id}Label">${value}</b></div><input type="range" id="${id}" min="0" max="100" value="${value}"></div>`).join('');
     const candidates = [{name: 'Improve local drainage and inlet maintenance', desc: 'Inspect and maintain drainage assets; confirm any capacity constraints through an engineering review.', safety: 4, affordability: 5, environment: 3, speed: 5}, {name: 'Targeted flood barriers or property-level protection', desc: 'Investigate site-specific protection measures; consider flow diversion and neighbouring impacts.', safety: 5, affordability: 3, environment: 2, speed: 3}, {name: 'Nature-based detention and rain gardens', desc: 'Assess opportunities to slow runoff, with hydraulic, land and maintenance feasibility checks.', safety: 3, affordability: 3, environment: 5, speed: 2}, {name: 'Flood warning, signage and community preparedness', desc: 'Improve awareness and response planning; does not physically reduce flood depth.', safety: 5, affordability: 5, environment: 3, speed: 5}, {name: 'Detailed drainage and creek capacity investigation', desc: 'Commission investigation before major works; results may identify different interventions.', safety: 4, affordability: 3, environment: 4, speed: 2}];
     const SUPPORTED_AI_DURATIONS = new Set([60, 90, 120]);
