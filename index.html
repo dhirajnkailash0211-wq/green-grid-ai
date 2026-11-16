@@ -1,241 +1,953 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
-<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- This site is hosted on Netlify. Anyone can build and deploy a site
      like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=e6d966a3-dfa8-49c1-807a-ced6933a53bf
-     Netlify hosting facts for this site: static/SSR served via Netlify Edge. --><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Green Grid AI: Parramatta climate resilience and flood decision-support MVP"><title>Green Grid AI | Climate Resilience</title><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><style>
-:root{--forest:#102a22;--leaf:#a8e063;--cream:#f6f7f1;--muted:#61746a;--line:#dce5dc}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--cream);color:#18231e;line-height:1.5}a{text-decoration:none;color:inherit}.wrap{width:min(1200px,calc(100% - 36px));margin:auto}.nav{background:var(--forest);color:white;position:sticky;top:0;z-index:1001}.navin{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:19px;font-weight:850;letter-spacing:-.04em}.brand small{display:block;font-size:10px;letter-spacing:.16em;color:#b9d5c4}.mark{display:inline-grid;place-items:center;width:35px;height:35px;background:var(--leaf);color:var(--forest);border-radius:11px;margin-right:8px}.links{display:flex;gap:23px;align-items:center;font-size:13px}.btn{display:inline-block;border:0;border-radius:40px;background:var(--leaf);color:var(--forest);padding:12px 19px;font-weight:800;cursor:pointer}.hero{background:var(--forest);color:white;padding:72px 0 78px}.eyebrow{color:var(--leaf);font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.14em}.hero h1{font-size:clamp(36px,5vw,67px);line-height:1.06;letter-spacing:-.055em;max-width:900px;margin:18px 0}.hero h1 em{font-style:normal;color:var(--leaf)}.hero p{max-width:750px;color:#c5d8ca;font-size:18px}.hero .sub{font-size:12px;margin-top:20px;color:#b4c8b9}.section{padding:58px 0}.section h2{font-size:clamp(26px,3vw,39px);letter-spacing:-.04em;margin:8px 0}.muted{color:var(--muted)}.explorer{display:grid;grid-template-columns:305px minmax(0,1fr);gap:18px;margin-top:25px}.panel{background:white;border:1px solid var(--line);border-radius:17px;padding:20px;min-width:0}.panel h3{margin:0 0 16px;font-size:18px}.field{margin-bottom:17px}.field label{font-size:13px;font-weight:700;display:block;margin-bottom:6px}.field select,.field input[type=number]{width:100%;padding:10px;border:1px solid #cbdad0;border-radius:8px;background:#fff;font:inherit}.field input[type=range]{width:100%;accent-color:#28866c}.sliderhead{display:flex;justify-content:space-between;font-size:13px}.small{font-size:12px;color:var(--muted)}.callout{padding:13px;border-radius:10px;background:#eaf4e8;font-size:13px;margin:14px 0}.warning{background:#fff3da;color:#6b4b0e}.map{height:460px;width:100%;border-radius:12px;z-index:1}.maptop{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:13px}.legend{font-size:12px;color:#5a7163}.chip{display:inline-block;padding:5px 10px;border-radius:99px;background:#e7f4df;color:#245e39;font-size:12px;font-weight:750}.results{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:17px}.metric{background:#f2f7f2;border-radius:11px;padding:14px}.metric strong{display:block;font-size:22px}.actions{display:grid;gap:11px;margin-top:16px}.action{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fff}.actiontop{display:flex;justify-content:space-between;gap:12px}.action h4{margin:0}.action p{font-size:13px;color:#5b6d62;margin:7px 0}.score{font-weight:850;color:#176c51;white-space:nowrap}.tag{font-size:11px;color:#61746a}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:23px}.tile{background:white;border:1px solid var(--line);border-radius:15px;padding:23px}.tile h3{margin:8px 0}.country{background:#183c30;color:white}.country p{color:#d2e3d7}.country .tile{background:#244738;color:white;border-color:#476657}.country .tile p{color:#d2e3d7}.footer{background:#0b2019;color:#c3d3c7;padding:26px 0;font-size:12px}.footer p{max-width:950px}.hidden{display:none}.inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.inputrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}@media(max-width:900px){.explorer{grid-template-columns:1fr}.results{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr}.links{gap:10px}.map{height:400px}}@media(max-width:600px){.links a:not(.btn){display:none}.hero{padding:46px 0}.results{grid-template-columns:1fr}.map{height:350px}}
-</style><style>
-.evidence-panel{margin-top:17px;border:1px solid #bfd5c4;border-radius:16px;padding:20px;background:#f8fcf7}.evidence-panel h3{margin:0 0 8px}.evidence-kicker{font-size:12px;color:#30684a;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.evidence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin:14px 0}.evidence-card{padding:13px;border:1px solid #dbe6dc;border-radius:10px;background:white}.evidence-card b{display:block;margin-bottom:5px}.evidence-card p{font-size:12px;color:#516b5a;margin:4px 0}.evidence-value{font-size:22px;font-weight:850;color:#185c40}.evidence-tag{display:inline-block;border-radius:99px;padding:4px 9px;font-size:11px;font-weight:750;background:#e9f0e8;color:#27543a}.evidence-warning{background:#fff3da;color:#634a18;padding:11px;border-radius:9px;font-size:12px;margin-top:10px}.evidence-source{font-size:11px;overflow-wrap:anywhere;color:#607368}.evidence-panel button{border:1px solid #acc6b1;background:#fff;border-radius:9px;padding:8px 12px;cursor:pointer}
-</style></head><body><nav class="nav"><div class="wrap navin"><a href="#top" class="brand"><span class="mark">G</span>GREEN GRID AI<small>CLIMATE INTELLIGENCE</small></a><div class="links"><a href="#explorer">Flood Explorer</a><a href="#vision">Vision</a><a href="#country">Caring for Country</a><a class="btn" href="#explorer">Explore demo</a></div></div></nav>
-<header class="hero" id="top"><div class="wrap"><div class="eyebrow">Parramatta · Climate resilience · Phase 1</div><h1>From climate risk to <em>resilience action.</em></h1><p>Green Grid AI helps decision-makers explore flood exposure, set local priorities and compare practical mitigation options — starting with the A’Becketts Creek study area.</p><a class="btn" href="#explorer">Explore Flood Resilience Demo ↓</a><p class="sub">Prototype decision-support tool · Not an operational flood warning service or Council-endorsed assessment</p></div></header>
-<section class="section" id="explorer"><div class="wrap"><div class="eyebrow" style="color:#36754a">Interactive demonstration</div><h2>Flood Resilience Explorer</h2><p class="muted">Explore a Parramatta street map, BOM design rainfall values, an interpolated flood-depth sample, and a separately labelled synthetic AI demonstration. Council can adjust decision thresholds and priorities to see how recommendations change.</p><div class="explorer"><aside class="panel"><h3>☁️ Rainfall & flood scenario</h3><div class="field"><label for="mode">Data mode</label><select id="mode"><option value="synthetic">Experimental AI — synthetic demonstration</option><option value="reference">Interpolated raster sample — 5% AEP only</option></select></div><div class="field"><label for="aep">Flood scenario (annual exceedance probability)</label><select id="aep"><option value="5">5% AEP — 1 in 20 annual chance</option><option value="20">20% AEP — 1 in 5 annual chance</option><option value="2">2% AEP — 1 in 50 annual chance</option><option value="1">1% AEP — 1 in 100 annual chance</option></select></div><div class="field"><label for="duration">BOM design rainfall duration</label><select id="duration"><option value="90">90 minutes</option></select></div><div id="rainfallNotice" class="callout"><strong id="rainfallValue">Loading BOM rainfall data…</strong><div id="rainfallMeta" class="small" style="margin-top:5px">Design rainfall depth · not a real-time forecast</div><div class="small" style="margin-top:8px">The experimental simulator below uses rainfall, duration and AEP as model inputs. The reference sample is not recalculated.</div></div><div id="scenarioAvailability" class="callout" role="status" aria-live="polite"><strong>Experimental AI — supported rainfall scenarios</strong><p style="margin:7px 0">AI predictions are available for <strong>1 hour (60 min), 1.5 hours (90 min) and 2 hours (120 min)</strong>, at <strong>20%, 5%, 2% and 1% AEP</strong>.</p><div class="small" id="scenarioAvailabilityDetail">Other durations are BOM rainfall references only, not supported by the current synthetic AI model.</div><div class="small" style="margin-top:7px">Synthetic demonstration only — not a validated flood forecast.</div></div><h3>🎚️ Council decision settings</h3><div class="field"><label for="threshold">Flood-depth action threshold: <b id="thresholdLabel">0.50 m</b></label><input type="range" id="threshold" min="0.1" max="2.5" step="0.1" value="0.5"></div><div class="small" style="margin-bottom:14px">Priority weights are normalised automatically; they do not need to total 100.</div><div id="sliders"></div><div class="callout warning">Illustrative action rules and scoring. Council-approved thresholds, feasibility studies and site assessments are required before use.</div></aside><div><div class="panel"><div class="maptop"><h3 style="margin:0">📍 A’Becketts Creek, Parramatta</h3><span class="chip">Synthetic AI + TUFLOW sample</span></div><div id="map" class="map" aria-label="Interactive street map of Parramatta"></div><p class="legend">Green rectangle = raster coverage boundary, <strong>not</strong> flood extent. Green marker = selected location. Blue dots = synthetic sample locations (not measured flood observations). Click near a blue dot to select it; nearest synthetic grid point is used within 100 m. No flood extent overlay is provided.</p></div><div class="panel" id="simulator" style="margin-top:17px"><div class="eyebrow" style="color:#36754a">Interactive AI demonstration</div><h2>Multi-factor what-if simulator</h2><p class="muted">Select a blue sample point on the map, then explore how changing synthetic environmental inputs changes the trained Random Forest prediction. This is a model demonstration, not a hydraulic forecast or evidence that an intervention will reduce real flood levels.</p><div class="callout warning" id="simStatus">The experimental model has not been loaded. Click Load experimental model to begin. Load the experimental model to explore synthetic predictions.</div><button id="loadModel" class="btn" type="button">Load experimental ML model</button><div id="simBody" class="hidden" style="margin-top:22px"><div class="results" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"><div class="metric"><span class="small">Baseline · synthetic</span><strong id="basePred">—</strong></div><div class="metric"><span class="small">Modified · synthetic</span><strong id="modPred">—</strong></div><div class="metric"><span class="small">Change (modified − baseline)</span><strong id="deltaPred">—</strong></div></div><p class="small" id="simLocation">Select a synthetic sample point on the map.</p><div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))" id="environmentControls"></div><div style="margin-top:18px"><button type="button" class="btn" id="resetEnvironment">Reset environmental inputs to synthetic baseline</button></div><p class="small" style="margin-top:15px">Rainfall, duration and AEP come from the rainfall controls above. Environmental inputs are synthetic indices, not measured site conditions. Random Forest responses may be stepwise or non-monotonic; no causal effect or intervention benefit is established.</p></div></div><div class="panel" style="margin-top:17px"><h3>Selected location</h3><div class="results"><div class="metric"><span class="small">Latitude / longitude</span><strong id="coordinates" style="font-size:17px">−33.827221, 151.007311</strong></div><div class="metric"><span class="small">Flood-depth value</span><strong id="depthValue">2.734 m</strong><span id="depthContext" class="small">Interpolated 5% AEP sample</span></div></div><div id="status" class="callout">This is an interpolated baseline sample from the 5% AEP raster, not an independently verified observation.</div><section class="evidence-panel" id="riskEvidence" aria-live="polite">
-<div class="evidence-kicker">Evidence-led decision support · new</div>
-<h3>🔎 Why might this location face flood risk?</h3>
-<p class="small">We do not assume climate risk. We check modelled <strong>flood hazard</strong> first, then identify which exposure, vulnerability and future-climate evidence is still needed.</p>
-<div class="evidence-grid">
- <div class="evidence-card"><b>1 · Modelled flood hazard</b><div id="evHazard" class="evidence-value">Loading…</div><p id="evHazardDetail">Checking provided flood-depth raster.</p><span class="evidence-tag">TUFLOW raster · sampled preview</span></div>
- <div class="evidence-card"><b>2 · People and assets exposed</b><div class="evidence-value" style="font-size:17px">Not assessed</div><p>No verified building, population, road or critical-asset overlay is connected yet.</p><span class="evidence-tag">Evidence gap</span></div>
- <div class="evidence-card"><b>3 · Community vulnerability</b><div class="evidence-value" style="font-size:17px">Not assessed</div><p>Social vulnerability and capacity to respond have not been evaluated for this point.</p><span class="evidence-tag">Evidence gap</span></div>
- <div class="evidence-card"><b>4 · Future climate change</b><div class="evidence-value" style="font-size:17px">Not assessed</div><p>These design-event flood rasters do not establish a future climate trend without climate-adjusted comparisons.</p><span class="evidence-tag">Evidence gap</span></div>
-</div>
-<div id="evConclusion" class="evidence-warning">Loading flood hazard evidence…</div>
-<p class="evidence-source" id="evSource"></p>
-<button type="button" id="evToggle">Show evidence method and limitations</button>
-<div id="evMethod" class="small hidden" style="margin-top:10px">Source: four provided A’Becketts Creek TUFLOW flood-depth GeoTIFF rasters (20%, 5%, 2%, 1% AEP). The browser uses an approximately 5 m nearest-neighbour geographic preview; individual samples may differ from full-resolution raster cells. AEP describes annual exceedance probability of the design event, not the probability that this point floods. A valid raster depth is modelled hazard, not an observed flood, independently validated result, impact estimate, climate attribution or risk classification. Missing/NoData is unknown, not proof of no flooding. The separate AI model uses synthetic targets and must not be presented as real hazard evidence.</div>
-</section><h3 style="margin-top:24px">Recommended resilience actions</h3><p class="small" id="actionExplanation">Illustrative options ranked using Council's adjustable priorities.</p><div id="actions" class="actions"></div></div></div></div></div></section>
-<section class="section" id="vision" style="background:#eaf2e8"><div class="wrap"><div class="eyebrow" style="color:#36754a">One connected platform</div><h2>Start with flood. Expand to a resilient Parramatta.</h2><div class="grid3"><div class="tile"><div style="font-size:26px">🌊</div><h3>Phase 1: Flood resilience</h3><p>Explore location-based flood exposure and compare mitigation actions using transparent rules and Council-defined priorities.</p></div><div class="tile"><div style="font-size:26px">🌳</div><h3>Future: Heat & urban greening</h3><p>Bring together heat vulnerability, tree canopy, shade, soil and nature-based cooling opportunities.</p></div><div class="tile"><div style="font-size:26px">♻️</div><h3>Future: Environmental health</h3><p>Explore waterway health, illegal dumping and environmental restoration opportunities.</p></div></div></div></section>
-<section class="section country" id="country"><div class="wrap"><div class="eyebrow">Respect · Partnership · Country</div><h2>Caring for Country</h2><p>We acknowledge the Darug people, the Traditional Custodians of the land on which Parramatta stands, and pay our respects to Elders past and present. Climate resilience should recognise First Nations leadership, knowledge and connection to Country.</p><div class="grid3"><div class="tile"><h3>Community-led</h3><p>Communities should shape priorities and participation.</p></div><div class="tile"><h3>Data sovereignty</h3><p>Cultural knowledge requires consent, governance and appropriate control.</p></div><div class="tile"><h3>Country and waterways</h3><p>Explore opportunities for restoration and Indigenous-led environmental initiatives.</p></div></div><p style="font-size:12px;margin-top:18px">This is an early-stage concept, not an endorsed First Nations partnership. Future work should be co-designed with appropriate Traditional Custodians and community organisations.</p></div></section>
-<footer class="footer"><div class="wrap"><strong>GREEN GRID AI</strong> · Climate Intelligence. Community Resilience.<p>Independent MVP demonstration, not affiliated with or endorsed by City of Parramatta Council. Raster reference mode uses one interpolated baseline sample, not independent TUFLOW validation. Experimental AI mode uses entirely synthetic training targets and does not represent observed or simulated local flood conditions. The street map is © OpenStreetMap contributors. Recommendations are illustrative, not engineering, emergency or planning advice.</p></div></footer>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script>
-let rainfallRecords=[];let rainfallLoadError=null;
-const sample={lat:-33.827221495786205,lng:151.00731094266897,depth:2.734};const bounds=[[-33.83171749644788,150.99339299908698],[-33.822828535078706,151.02324556380842]];const map=L.map('map',{scrollWheelZoom:true}).fitBounds(bounds,{padding:[20,20]});L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap contributors',maxZoom:19}).addTo(map);L.rectangle(bounds,{color:'#209d78',weight:2,fillOpacity:.035}).addTo(map);let marker=L.circleMarker([sample.lat,sample.lng],{radius:9,color:'#fff',weight:3,fillColor:'#159c6b',fillOpacity:1}).addTo(map).bindPopup('Interpolated 5% AEP sample: 2.734 m predicted depth').openPopup();let selected={...sample};let atSample=true;
-const weightSpecs=[['safety','Community safety',40],['affordability','Affordability',25],['environment','Environmental benefit',20],['speed','Implementation speed',15]];document.getElementById('sliders').innerHTML=weightSpecs.map(([id,label,value])=>`<div class="field"><div class="sliderhead"><label for="${id}">${label}</label><b id="${id}Label">${value}</b></div><input type="range" id="${id}" min="0" max="100" value="${value}"></div>`).join('');
-const candidates=[{name:'Improve local drainage and inlet maintenance',desc:'Inspect and maintain drainage assets; confirm any capacity constraints through an engineering review.',safety:4,affordability:5,environment:3,speed:5},{name:'Targeted flood barriers or property-level protection',desc:'Investigate site-specific protection measures; consider flow diversion and neighbouring impacts.',safety:5,affordability:3,environment:2,speed:3},{name:'Nature-based detention and rain gardens',desc:'Assess opportunities to slow runoff, with hydraulic, land and maintenance feasibility checks.',safety:3,affordability:3,environment:5,speed:2},{name:'Flood warning, signage and community preparedness',desc:'Improve awareness and response planning; does not physically reduce flood depth.',safety:5,affordability:5,environment:3,speed:5},{name:'Detailed drainage and creek capacity investigation',desc:'Commission investigation before major works; results may identify different interventions.',safety:4,affordability:3,environment:4,speed:2}];
-const SUPPORTED_AI_DURATIONS=new Set([60,90,120]);
-function refreshDurationOptions(preferred){
- const mode=document.getElementById('mode').value;
- const select=document.getElementById('duration');
- const previous=String(preferred??select.value??'90');
- const all=[...new Map(rainfallRecords.map(r=>[r.minutes,r.label])).entries()].sort((a,b)=>a[0]-b[0]);
- const choices=mode==='synthetic'?all.filter(([minutes])=>SUPPORTED_AI_DURATIONS.has(minutes)):all;
- select.replaceChildren();
- for(const [minutes,label] of choices){
-  const option=document.createElement('option');option.value=String(minutes);option.textContent=label;select.appendChild(option);
- }
- if(choices.length){
-  select.value=choices.some(([minutes])=>String(minutes)===previous)?previous:
-    choices.some(([minutes])=>minutes===90)?'90':String(choices[0][0]);
- }
- const detail=document.getElementById('scenarioAvailabilityDetail');
- const notice=document.getElementById('scenarioAvailability');
- if(mode==='synthetic'){
-  detail.textContent='Only supported durations are selectable in Experimental AI mode. Other BOM durations can be viewed in Interpolated raster sample mode.';
-  notice.classList.remove('warning');
- }else{
-  detail.textContent='Reference mode shows all BOM rainfall durations. Rainfall values are reference information only; the interpolated 5% AEP sample does not recalculate with duration.';
-  notice.classList.remove('warning');
- }
-}
-function updateRainfall(){
- const aep=Number(document.getElementById('aep').value);
- const duration=Number(document.getElementById('duration').value);
- const match=rainfallRecords.find(r=>r.aep===aep&&r.minutes===duration);
- const value=document.getElementById('rainfallValue');
- const meta=document.getElementById('rainfallMeta');
- if(match){value.textContent=`${match.mm.toFixed(1)} mm`;meta.textContent=`BOM design rainfall · ${match.label} · ${aep}% AEP`}
- else{value.textContent=rainfallLoadError?'Rainfall file unavailable':'No rainfall value for this combination';meta.textContent=rainfallLoadError||'Check the selected duration and AEP';}
-}
-async function loadRainfall(){
- try{
-  const response=await fetch('./rainfall_scenarios.csv',{cache:'no-cache'});
-  if(!response.ok)throw new Error(`HTTP ${response.status}`);
-  const csv=await response.text();
-  const lines=csv.trim().replace(/^\uFEFF/,'').split(/\r?\n/).filter(Boolean);
-  const headers=lines.shift().split(',').map(x=>x.trim().toLowerCase());
-  const expected=['duration','duration_minutes','aep_percent','rainfall_depth_mm'];
-  if(expected.some(h=>!headers.includes(h)))throw new Error('CSV headers do not match the expected rainfall dataset');
-  rainfallRecords=lines.map(line=>{
-   const cells=line.split(',').map(x=>x.trim());
-   const get=h=>cells[headers.indexOf(h)];
-   return {label:get('duration'),minutes:Number(get('duration_minutes')),aep:Number(get('aep_percent')),mm:Number(get('rainfall_depth_mm'))};
-  }).filter(r=>Number.isFinite(r.minutes)&&Number.isFinite(r.aep)&&Number.isFinite(r.mm));
-  if(!rainfallRecords.length)throw new Error('CSV contains no valid rainfall records');
-   refreshDurationOptions('90');
-  updateRainfall();
- }catch(err){rainfallLoadError=`Unable to load rainfall_scenarios.csv (${err.message}). Ensure the CSV is deployed beside index.html.`;updateRainfall();}
-}
-let syntheticRows=[],syntheticError=null,syntheticCircles=[];
-const EARTH=111320;
-function nearestSynthetic(lat,lng){let best=null,dist=Infinity;for(const r of syntheticRows){const dy=(r.latitude-lat)*EARTH,dx=(r.longitude-lng)*EARTH*Math.cos(lat*Math.PI/180),d=Math.hypot(dx,dy);if(d<dist){dist=d;best=r}}return dist<=100?best:null}
-function update(){
- updateRainfall();const mode=document.getElementById('mode').value,aep=Number(document.getElementById('aep').value),duration=Number(document.getElementById('duration').value),threshold=Number(document.getElementById('threshold').value);
- document.getElementById('thresholdLabel').textContent=threshold.toFixed(2)+' m';document.getElementById('coordinates').textContent=selected.lat.toFixed(6)+', '+selected.lng.toFixed(6);
- let depth=null,context='',status='';
- if(mode==='reference'){
-   if(atSample&&aep===5){depth=sample.depth;context='Interpolated 5% AEP baseline sample (not independent TUFLOW output)';status='Reference value at the interpolated sample location only. Other locations and AEPs are not yet connected.'}
-   else{context='TUFLOW reference unavailable';status='No raster lookup for this location and scenario. This does not mean flood-free.'}
- }else{
-   const point=nearestSynthetic(selected.lat,selected.lng);
-   if(syntheticError){context='Synthetic dataset unavailable';status=syntheticError}
-   else if(point){const r=syntheticRows.find(x=>x.cell_id===point.cell_id&&x.aep_percent===aep&&x.duration_minutes===duration);
-     if(r){depth=r.predicted_depth_m;context='EXPERIMENTAL — synthetic formula-trained AI';status=`Synthetic scenario at grid point ${r.cell_id}. This is not a TUFLOW prediction, measured depth, or a safety assessment. Nearest synthetic point used (within 100 m).`}
-     else{context='Synthetic scenario unavailable';status='This duration/AEP combination is not present in the synthetic training dataset. Try 60, 90 or 120 minutes.'}
-   }else{context='Outside synthetic sample coverage';status='No synthetic sample point within 100 m. This is not evidence of a flood-free location.'}
- }
- const known=depth!==null;
- document.getElementById('depthValue').textContent=known?depth.toFixed(3)+' m':'Not available';
- document.getElementById('depthContext').textContent=context;
- document.getElementById('status').className='callout '+(mode==='synthetic'||!known?'warning':'');
- document.getElementById('status').textContent=status+(known?depth>=threshold?` The displayed value is above the selected ${threshold.toFixed(2)} m screening threshold.`:` The displayed value is below the selected ${threshold.toFixed(2)} m screening threshold.`:'');
- document.getElementById('actionExplanation').textContent=known&&depth>=threshold?'Illustrative rankings based on adjustable weights; not site-engineered or Council-approved.':'No action ranking for this selection.';
- let weights={};weightSpecs.forEach(([id])=>{weights[id]=Number(document.getElementById(id).value);document.getElementById(id+'Label').textContent=weights[id]});let total=Object.values(weights).reduce((a,b)=>a+b,0);
- document.getElementById('actions').innerHTML=known&&depth>=threshold?candidates.map(a=>({...a,score:total?100*Object.keys(weights).reduce((sum,k)=>sum+weights[k]*a[k]/5,0)/total:0})).sort((a,b)=>b.score-a.score).map((a,i)=>`<div class="action"><div class="actiontop"><h4>${i+1}. ${a.name}</h4><span class="score">${a.score.toFixed(0)}/100</span></div><p>${a.desc}</p><span class="tag">${mode==='synthetic'?'Synthetic scenario · ':''}Illustrative score · feasibility review required</span></div>`).join(''):'<div class="callout">No action ranking for this selection.</div>';
-}
-async function loadSynthetic(){try{const response=await fetch('./synthetic_predictions.json',{cache:'no-cache'});if(!response.ok)throw Error(`HTTP ${response.status}`);const data=await response.json();syntheticRows=data.records;
- const unique=new Map();for(const r of syntheticRows)if(!unique.has(r.cell_id))unique.set(r.cell_id,r);
- for(const r of unique.values())syntheticCircles.push(L.circleMarker([r.latitude,r.longitude],{radius:2.6,color:'#0e7490',weight:0,fillColor:'#0e7490',fillOpacity:.48,interactive:false}).addTo(map));
- update();}catch(err){syntheticError=`Could not load synthetic_predictions.json (${err.message}). Upload the complete folder to Netlify.`;update()}}
-map.on('click',e=>{selected={lat:e.latlng.lat,lng:e.latlng.lng};atSample=Math.hypot((selected.lat-sample.lat)*EARTH,(selected.lng-sample.lng)*EARTH*Math.cos(selected.lat*Math.PI/180))<1;marker.setLatLng(e.latlng).bindPopup('Selected location').openPopup();update()});
-document.querySelectorAll('select,input[type=range]').forEach(el=>el.addEventListener('input',update));
-document.getElementById('mode').addEventListener('change',()=>{refreshDurationOptions();update();renderSimulator(false)});
-const reset=document.createElement('button');reset.textContent='Return to interpolated sample';reset.className='btn';reset.style.cssText='margin-top:10px;padding:9px 13px;font-size:12px';document.querySelector('.maptop').appendChild(reset);
-reset.addEventListener('click',()=>{selected={...sample};atSample=true;document.getElementById('mode').value='reference';document.getElementById('aep').value='5';marker.setLatLng([sample.lat,sample.lng]).bindPopup('Interpolated 5% AEP sample: 2.734 m predicted depth').openPopup();map.panTo([sample.lat,sample.lng]);update();renderSimulator(false)});
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Green Grid AI: Parramatta climate resilience and flood decision-support MVP">
+  <title>Green Grid AI | Climate Resilience</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    :root {
+      --forest: #102a22;
+      --leaf: #a8e063;
+      --cream: #f6f7f1;
+      --muted: #61746a;
+      --line: #dce5dc
+    }
 
-// VERSION 2: exact exported RandomForest inference, lazily loaded.
-let browserForest=null, spatialByCell=new Map(),simCell=null,modifiedValues=null;
-const envSpecs=[
- ['impervious_pct','Impervious surface','%',0,100,1],
- ['soil_infiltration_index_0_100','Soil infiltration index',' / 100',0,100,1],
- ['drainage_capacity_index_0_100','Drainage capacity index',' / 100',0,100,1],
- ['slope_pct','Slope','%',0,10,.01]
-];
-function forestPredict(input){
- if(!browserForest)return null;
- const row=browserForest.features.map(k=>Math.fround(Number(input[k])));
- if(row.some(v=>!Number.isFinite(v)))return null;
- let total=0;
- for(const tree of browserForest.trees){
-  let node=0;
-  while(tree.children_left[node]!==-1){
-   const f=tree.feature[node];
-   node=row[f]<=tree.threshold[node]?tree.children_left[node]:tree.children_right[node];
-  }
-  total+=tree.value[node];
- }
- return total/browserForest.trees.length;
-}
-function rainfallForScenario(){
- const aep=Number(document.getElementById('aep').value),duration=Number(document.getElementById('duration').value);
- const match=rainfallRecords.find(r=>r.aep===aep&&r.minutes===duration);
- return match?{duration_minutes:duration,aep_percent:aep,design_rainfall_mm:match.mm}:null;
-}
-function currentSimCell(){
- const point=nearestSynthetic(selected.lat,selected.lng);
- return point&&spatialByCell.has(point.cell_id)?point.cell_id:null;
-}
-function renderEnvironmentControls(){
- const container=document.getElementById('environmentControls');
- container.innerHTML=envSpecs.map(([key,label,unit,min,max,step])=>`<div class="tile" style="padding:13px"><label for="env_${key}" style="font-size:13px;font-weight:700">${label}</label><div class="sliderhead"><span class="small">Synthetic scenario</span><b id="val_${key}"></b></div><input style="width:100%;accent-color:#28866c" type="range" id="env_${key}" min="${min}" max="${max}" step="${step}"></div>`).join('');
- for(const [key,label,unit] of envSpecs){
-  document.getElementById('env_'+key).addEventListener('input',e=>{
-   modifiedValues[key]=Number(e.target.value);
-   document.getElementById('val_'+key).textContent=Number(e.target.value).toFixed(key==='slope_pct'?2:0)+unit;
-   renderSimulator(false);
-  });
- }
-}
-function renderSimulator(forceReset=false){
- if(!browserForest)return;
- const status=document.getElementById('simStatus'),cell=currentSimCell();
- if(!cell){status.textContent='Choose a location within 100 m of a blue synthetic sample point. No prediction is available outside sample coverage.';for(const id of ['basePred','modPred','deltaPred'])document.getElementById(id).textContent='—';return;}
- if(forceReset||cell!==simCell||!modifiedValues){
-  simCell=cell;modifiedValues={...spatialByCell.get(cell)};
-  for(const [key,,unit] of envSpecs){
-   document.getElementById('env_'+key).value=modifiedValues[key];
-   document.getElementById('val_'+key).textContent=Number(modifiedValues[key]).toFixed(key==='slope_pct'?2:0)+unit;
-  }
- }
- const rain=rainfallForScenario();
- if(!rain){status.textContent='The selected rainfall duration and AEP have no reference rainfall value. Choose a supported combination.';return;}
- const baseline={...spatialByCell.get(cell),...rain};
- const modified={...baseline,...Object.fromEntries(envSpecs.map(([key])=>[key,modifiedValues[key]]))};
- const b=forestPredict(baseline),m=forestPredict(modified);
- if(b===null||m===null){status.textContent='Model inputs invalid or incomplete.';return;}
- document.getElementById('basePred').textContent=b.toFixed(3)+' m';
- document.getElementById('modPred').textContent=m.toFixed(3)+' m';
- document.getElementById('deltaPred').textContent=(m-b>=0?'+':'')+(m-b).toFixed(3)+' m';
- document.getElementById('simLocation').textContent=`Synthetic cell ${cell} · ${rain.duration_minutes} min · ${rain.aep_percent}% AEP · ${rain.design_rainfall_mm.toFixed(1)} mm rainfall`;
- status.textContent='Experimental synthetic model loaded. Values are illustrative, not validated TUFLOW or real flood predictions.';
-}
-async function loadBrowserForest(){
- const button=document.getElementById('loadModel'),status=document.getElementById('simStatus');
- button.disabled=true;button.textContent='Loading model…';
- try{
-  const [mr,sr]=await Promise.all([fetch('./flood_model_browser.json'),fetch('./synthetic_spatial_features.csv')]);
-  if(!mr.ok)throw new Error(`flood_model_browser.json HTTP ${mr.status}. Copy the JSON exported on your PC into the website folder.`);
-  if(!sr.ok)throw new Error(`synthetic_spatial_features.csv HTTP ${sr.status}`);
-  const model=await mr.json();
-  const expected=['duration_minutes','aep_percent','design_rainfall_mm','impervious_pct','soil_infiltration_index_0_100','drainage_capacity_index_0_100','slope_pct'];
-  if(model.model_type!=='RandomForestRegressor'||!Array.isArray(model.trees)||model.trees.length!==200||JSON.stringify(model.features)!==JSON.stringify(expected))throw new Error('Unexpected model schema. Use your exported 200-tree JSON.');
-  const csv=(await sr.text()).trim().split(/\r?\n/);const head=csv.shift().split(',');
-  for(const line of csv){const vals=line.split(',');const r=Object.fromEntries(head.map((h,i)=>[h,vals[i]]));for(const [key] of envSpecs)r[key]=Number(r[key]);spatialByCell.set(r.cell_id,r)}
-  browserForest=model;renderEnvironmentControls();document.getElementById('simBody').classList.remove('hidden');button.textContent='Model loaded';
-  renderSimulator(true);
- }catch(err){button.disabled=false;button.textContent='Retry loading model';status.textContent='Could not load simulator: '+err.message}
-}
-document.getElementById('loadModel').addEventListener('click',loadBrowserForest);
-document.getElementById('resetEnvironment').addEventListener('click',()=>renderSimulator(true));
-map.on('click',()=>renderSimulator(false));
-document.getElementById('aep').addEventListener('change',()=>renderSimulator(false));
-document.getElementById('duration').addEventListener('change',()=>renderSimulator(false));
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, Arial, sans-serif;
+      background: var(--cream);
+      color: #18231e;
+      line-height: 1.5
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    .wrap {
+      width: min(1200px, calc(100% - 36px));
+      margin: auto
+    }
+
+    .nav {
+      background: var(--forest);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1001
+    }
+
+    .navin {
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px
+    }
+
+    .brand {
+      font-size: 19px;
+      font-weight: 850;
+      letter-spacing: -.04em
+    }
+
+    .brand small {
+      display: block;
+      font-size: 10px;
+      letter-spacing: .16em;
+      color: #b9d5c4
+    }
+
+    .mark {
+      display: inline-grid;
+      place-items: center;
+      width: 35px;
+      height: 35px;
+      background: var(--leaf);
+      color: var(--forest);
+      border-radius: 11px;
+      margin-right: 8px
+    }
+
+    .links {
+      display: flex;
+      gap: 23px;
+      align-items: center;
+      font-size: 13px
+    }
+
+    .btn {
+      display: inline-block;
+      border: 0;
+      border-radius: 40px;
+      background: var(--leaf);
+      color: var(--forest);
+      padding: 12px 19px;
+      font-weight: 800;
+      cursor: pointer
+    }
+
+    .hero {
+      background: var(--forest);
+      color: white;
+      padding: 72px 0 78px
+    }
+
+    .eyebrow {
+      color: var(--leaf);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .14em
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 5vw, 67px);
+      line-height: 1.06;
+      letter-spacing: -.055em;
+      max-width: 900px;
+      margin: 18px 0
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--leaf)
+    }
+
+    .hero p {
+      max-width: 750px;
+      color: #c5d8ca;
+      font-size: 18px
+    }
+
+    .hero .sub {
+      font-size: 12px;
+      margin-top: 20px;
+      color: #b4c8b9
+    }
+
+    .section {
+      padding: 58px 0
+    }
+
+    .section h2 {
+      font-size: clamp(26px, 3vw, 39px);
+      letter-spacing: -.04em;
+      margin: 8px 0
+    }
+
+    .muted {
+      color: var(--muted)
+    }
+
+    .explorer {
+      display: grid;
+      grid-template-columns: 305px minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 25px
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      padding: 20px;
+      min-width: 0
+    }
+
+    .panel h3 {
+      margin: 0 0 16px;
+      font-size: 18px
+    }
+
+    .field {
+      margin-bottom: 17px
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 6px
+    }
+
+    .field select,
+    .field input[type=number] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbdad0;
+      border-radius: 8px;
+      background: #fff;
+      font: inherit
+    }
+
+    .field input[type=range] {
+      width: 100%;
+      accent-color: #28866c
+    }
+
+    .sliderhead {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px
+    }
+
+    .small {
+      font-size: 12px;
+      color: var(--muted)
+    }
+
+    .callout {
+      padding: 13px;
+      border-radius: 10px;
+      background: #eaf4e8;
+      font-size: 13px;
+      margin: 14px 0
+    }
+
+    .warning {
+      background: #fff3da;
+      color: #6b4b0e
+    }
+
+    .map {
+      height: 460px;
+      width: 100%;
+      border-radius: 12px;
+      z-index: 1
+    }
+
+    .maptop {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 13px
+    }
+
+    .legend {
+      font-size: 12px;
+      color: #5a7163
+    }
+
+    .chip {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 99px;
+      background: #e7f4df;
+      color: #245e39;
+      font-size: 12px;
+      font-weight: 750
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 17px
+    }
+
+    .metric {
+      background: #f2f7f2;
+      border-radius: 11px;
+      padding: 14px
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 22px
+    }
+
+    .actions {
+      display: grid;
+      gap: 11px;
+      margin-top: 16px
+    }
+
+    .action {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 15px;
+      background: #fff
+    }
+
+    .actiontop {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px
+    }
+
+    .action h4 {
+      margin: 0
+    }
+
+    .action p {
+      font-size: 13px;
+      color: #5b6d62;
+      margin: 7px 0
+    }
+
+    .score {
+      font-weight: 850;
+      color: #176c51;
+      white-space: nowrap
+    }
+
+    .tag {
+      font-size: 11px;
+      color: #61746a
+    }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 23px
+    }
+
+    .tile {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 23px
+    }
+
+    .tile h3 {
+      margin: 8px 0
+    }
+
+    .country {
+      background: #183c30;
+      color: white
+    }
+
+    .country p {
+      color: #d2e3d7
+    }
+
+    .country .tile {
+      background: #244738;
+      color: white;
+      border-color: #476657
+    }
+
+    .country .tile p {
+      color: #d2e3d7
+    }
+
+    .footer {
+      background: #0b2019;
+      color: #c3d3c7;
+      padding: 26px 0;
+      font-size: 12px
+    }
+
+    .footer p {
+      max-width: 950px
+    }
+
+    .hidden {
+      display: none
+    }
+
+    .inline {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap
+    }
+
+    .inputrow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px
+    }
+
+    @media(max-width:900px) {
+      .explorer {
+        grid-template-columns: 1fr
+      }
+
+      .results {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .grid3 {
+        grid-template-columns: 1fr
+      }
+
+      .links {
+        gap: 10px
+      }
+
+      .map {
+        height: 400px
+      }
+    }
+
+    @media(max-width:600px) {
+      .links a:not(.btn) {
+        display: none
+      }
+
+      .hero {
+        padding: 46px 0
+      }
+
+      .results {
+        grid-template-columns: 1fr
+      }
+
+      .map {
+        height: 350px
+      }
+    }
+  </style>
+  <style>
+    .evidence-panel {
+      margin-top: 17px;
+      border: 1px solid #bfd5c4;
+      border-radius: 16px;
+      padding: 20px;
+      background: #f8fcf7
+    }
+
+    .evidence-panel h3 {
+      margin: 0 0 8px
+    }
+
+    .evidence-kicker {
+      font-size: 12px;
+      color: #30684a;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase
+    }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px;
+      margin: 14px 0
+    }
+
+    .evidence-card {
+      padding: 13px;
+      border: 1px solid #dbe6dc;
+      border-radius: 10px;
+      background: white
+    }
+
+    .evidence-card b {
+      display: block;
+      margin-bottom: 5px
+    }
+
+    .evidence-card p {
+      font-size: 12px;
+      color: #516b5a;
+      margin: 4px 0
+    }
+
+    .evidence-value {
+      font-size: 22px;
+      font-weight: 850;
+      color: #185c40
+    }
+
+    .evidence-tag {
+      display: inline-block;
+      border-radius: 99px;
+      padding: 4px 9px;
+      font-size: 11px;
+      font-weight: 750;
+      background: #e9f0e8;
+      color: #27543a
+    }
+
+    .evidence-warning {
+      background: #fff3da;
+      color: #634a18;
+      padding: 11px;
+      border-radius: 9px;
+      font-size: 12px;
+      margin-top: 10px
+    }
+
+    .evidence-source {
+      font-size: 11px;
+      overflow-wrap: anywhere;
+      color: #607368
+    }
+
+    .evidence-panel button {
+      border: 1px solid #acc6b1;
+      background: #fff;
+      border-radius: 9px;
+      padding: 8px 12px;
+      cursor: pointer
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="wrap navin"><a href="#top" class="brand"><span class="mark">G</span>GREEN GRID AI<small>CLIMATE
+          INTELLIGENCE</small></a>
+      <div class="links"><a href="#explorer">Flood Explorer</a><a href="#vision">Vision</a><a href="#country">Caring for
+          Country</a><a class="btn" href="#explorer">Explore demo</a></div>
+    </div>
+  </nav>
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="eyebrow">Parramatta · Climate resilience · Phase 1</div>
+      <h1>From climate risk to <em>resilience action.</em></h1>
+      <p>Green Grid AI helps decision-makers explore flood exposure, set local priorities and compare practical
+        mitigation options — starting with the A’Becketts Creek study area.</p><a class="btn" href="#explorer">Explore
+        Flood Resilience Demo ↓</a>
+      <p class="sub">Prototype decision-support tool · Not an operational flood warning service or Council-endorsed
+        assessment</p>
+    </div>
+  </header>
+  <section class="section" id="explorer">
+    <div class="wrap">
+      <div class="eyebrow" style="color:#36754a">Interactive demonstration</div>
+      <h2>Flood Resilience Explorer</h2>
+      <p class="muted">Explore a Parramatta street map, BOM design rainfall values, an interpolated flood-depth sample,
+        and a separately labelled synthetic AI demonstration. Council can adjust decision thresholds and priorities to
+        see how recommendations change.</p>
+      <div class="explorer">
+        <aside class="panel">
+          <h3>☁️ Rainfall & flood scenario</h3>
+          <div class="field"><label for="mode">Data mode</label><select id="mode">
+              <option value="synthetic">Experimental AI — synthetic demonstration</option>
+              <option value="reference">Interpolated raster sample — 5% AEP only</option>
+            </select></div>
+          <div class="field"><label for="aep">Flood scenario (annual exceedance probability)</label><select id="aep">
+              <option value="5">5% AEP — 1 in 20 annual chance</option>
+              <option value="20">20% AEP — 1 in 5 annual chance</option>
+              <option value="2">2% AEP — 1 in 50 annual chance</option>
+              <option value="1">1% AEP — 1 in 100 annual chance</option>
+            </select></div>
+          <div class="field"><label for="duration">BOM design rainfall duration</label><select id="duration">
+              <option value="90">90 minutes</option>
+            </select></div>
+          <div id="rainfallNotice" class="callout"><strong id="rainfallValue">Loading BOM rainfall data…</strong>
+            <div id="rainfallMeta" class="small" style="margin-top:5px">Design rainfall depth · not a real-time forecast
+            </div>
+            <div class="small" style="margin-top:8px">The experimental simulator below uses rainfall, duration and AEP
+              as model inputs. The reference sample is not recalculated.</div>
+          </div>
+          <div id="scenarioAvailability" class="callout" role="status" aria-live="polite"><strong>Experimental AI —
+              supported rainfall scenarios</strong>
+            <p style="margin:7px 0">AI predictions are available for <strong>1 hour (60 min), 1.5 hours (90 min) and 2
+                hours (120 min)</strong>, at <strong>20%, 5%, 2% and 1% AEP</strong>.</p>
+            <div class="small" id="scenarioAvailabilityDetail">Other durations are BOM rainfall references only, not
+              supported by the current synthetic AI model.</div>
+            <div class="small" style="margin-top:7px">Synthetic demonstration only — not a validated flood forecast.
+            </div>
+          </div>
+          <h3>🎚️ Council decision settings</h3>
+          <div class="field"><label for="threshold">Flood-depth action threshold: <b id="thresholdLabel">0.50
+                m</b></label><input type="range" id="threshold" min="0.1" max="2.5" step="0.1" value="0.5"></div>
+          <div class="small" style="margin-bottom:14px">Priority weights are normalised automatically; they do not need
+            to total 100.</div>
+          <div id="sliders"></div>
+          <div class="callout warning">Illustrative action rules and scoring. Council-approved thresholds, feasibility
+            studies and site assessments are required before use.</div>
+        </aside>
+        <div>
+          <div class="panel">
+            <div class="maptop">
+              <h3 style="margin:0">📍 A’Becketts Creek, Parramatta</h3><span class="chip">Synthetic AI + TUFLOW
+                sample</span>
+            </div>
+            <div id="map" class="map" aria-label="Interactive street map of Parramatta"></div>
+            <p class="legend">Green rectangle = raster coverage boundary, <strong>not</strong> flood extent. Green
+              marker = selected location. Blue dots = synthetic sample locations (not measured flood observations).
+              Click near a blue dot to select it; nearest synthetic grid point is used within 100 m. No flood extent
+              overlay is provided.</p>
+          </div>
+          <div class="panel" id="simulator" style="margin-top:17px">
+            <div class="eyebrow" style="color:#36754a">Interactive AI demonstration</div>
+            <h2>Multi-factor what-if simulator</h2>
+            <p class="muted">Select a blue sample point on the map, then explore how changing synthetic environmental
+              inputs changes the trained Random Forest prediction. This is a model demonstration, not a hydraulic
+              forecast or evidence that an intervention will reduce real flood levels.</p>
+            <div class="callout warning" id="simStatus">The experimental model has not been loaded. Click Load
+              experimental model to begin. Load the experimental model to explore synthetic predictions.</div><button
+              id="loadModel" class="btn" type="button">Load experimental ML model</button>
+            <div id="simBody" class="hidden" style="margin-top:22px">
+              <div class="results" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+                <div class="metric"><span class="small">Baseline · synthetic</span><strong id="basePred">—</strong>
+                </div>
+                <div class="metric"><span class="small">Modified · synthetic</span><strong id="modPred">—</strong></div>
+                <div class="metric"><span class="small">Change (modified − baseline)</span><strong
+                    id="deltaPred">—</strong></div>
+              </div>
+              <p class="small" id="simLocation">Select a synthetic sample point on the map.</p>
+              <div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr))"
+                id="environmentControls"></div>
+              <div style="margin-top:18px"><button type="button" class="btn" id="resetEnvironment">Reset environmental
+                  inputs to synthetic baseline</button></div>
+              <p class="small" style="margin-top:15px">Rainfall, duration and AEP come from the rainfall controls above.
+                Environmental inputs are synthetic indices, not measured site conditions. Random Forest responses may be
+                stepwise or non-monotonic; no causal effect or intervention benefit is established.</p>
+            </div>
+          </div>
+          <div class="panel" style="margin-top:17px">
+            <h3>Selected location</h3>
+            <div class="results">
+              <div class="metric"><span class="small">Latitude / longitude</span><strong id="coordinates"
+                  style="font-size:17px">−33.827221, 151.007311</strong></div>
+              <div class="metric"><span class="small">Flood-depth value</span><strong id="depthValue">2.734
+                  m</strong><span id="depthContext" class="small">Interpolated 5% AEP sample</span></div>
+            </div>
+            <div id="status" class="callout">This is an interpolated baseline sample from the 5% AEP raster, not an
+              independently verified observation.</div>
+            <section class="evidence-panel" id="riskEvidence" aria-live="polite">
+              <div class="evidence-kicker">Evidence-led decision support · new</div>
+              <h3>🔎 Why might this location face flood risk?</h3>
+              <p class="small">We do not assume climate risk. We check modelled <strong>flood hazard</strong> first,
+                then identify which exposure, vulnerability and future-climate evidence is still needed.</p>
+              <div class="evidence-grid">
+                <div class="evidence-card"><b>1 · Modelled flood hazard</b>
+                  <div id="evHazard" class="evidence-value">Loading…</div>
+                  <p id="evHazardDetail">Checking provided flood-depth raster.</p><span class="evidence-tag">TUFLOW
+                    raster · sampled preview</span>
+                </div>
+                <div class="evidence-card"><b>2 · People and assets exposed</b>
+                  <div class="evidence-value" style="font-size:17px">Not assessed</div>
+                  <p>No verified building, population, road or critical-asset overlay is connected yet.</p><span
+                    class="evidence-tag">Evidence gap</span>
+                </div>
+                <div class="evidence-card"><b>3 · Community vulnerability</b>
+                  <div class="evidence-value" style="font-size:17px">Not assessed</div>
+                  <p>Social vulnerability and capacity to respond have not been evaluated for this point.</p><span
+                    class="evidence-tag">Evidence gap</span>
+                </div>
+                <div class="evidence-card"><b>4 · Future climate change</b>
+                  <div class="evidence-value" style="font-size:17px">Not assessed</div>
+                  <p>These design-event flood rasters do not establish a future climate trend without climate-adjusted
+                    comparisons.</p><span class="evidence-tag">Evidence gap</span>
+                </div>
+              </div>
+              <div id="evConclusion" class="evidence-warning">Loading flood hazard evidence…</div>
+              <p class="evidence-source" id="evSource"></p>
+              <button type="button" id="evToggle">Show evidence method and limitations</button>
+              <div id="evMethod" class="small hidden" style="margin-top:10px">Source: four provided A’Becketts Creek
+                TUFLOW flood-depth GeoTIFF rasters (20%, 5%, 2%, 1% AEP). The browser uses an approximately 5 m
+                nearest-neighbour geographic preview; individual samples may differ from full-resolution raster cells.
+                AEP describes annual exceedance probability of the design event, not the probability that this point
+                floods. A valid raster depth is modelled hazard, not an observed flood, independently validated result,
+                impact estimate, climate attribution or risk classification. Missing/NoData is unknown, not proof of no
+                flooding. The separate AI model uses synthetic targets and must not be presented as real hazard
+                evidence.</div>
+            </section>
+            <h3 style="margin-top:24px">Recommended resilience actions</h3>
+            <p class="small" id="actionExplanation">Illustrative options ranked using Council's adjustable priorities.
+            </p>
+            <div id="actions" class="actions"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="vision" style="background:#eaf2e8">
+    <div class="wrap">
+      <div class="eyebrow" style="color:#36754a">One connected platform</div>
+      <h2>Start with flood. Expand to a resilient Parramatta.</h2>
+      <div class="grid3">
+        <div class="tile">
+          <div style="font-size:26px">🌊</div>
+          <h3>Phase 1: Flood resilience</h3>
+          <p>Explore location-based flood exposure and compare mitigation actions using transparent rules and
+            Council-defined priorities.</p>
+        </div>
+        <div class="tile">
+          <div style="font-size:26px">🌳</div>
+          <h3>Future: Heat & urban greening</h3>
+          <p>Bring together heat vulnerability, tree canopy, shade, soil and nature-based cooling opportunities.</p>
+        </div>
+        <div class="tile">
+          <div style="font-size:26px">♻️</div>
+          <h3>Future: Environmental health</h3>
+          <p>Explore waterway health, illegal dumping and environmental restoration opportunities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section country" id="country">
+    <div class="wrap">
+      <div class="eyebrow">Respect · Partnership · Country</div>
+      <h2>Caring for Country</h2>
+      <p>We acknowledge the Darug people, the Traditional Custodians of the land on which Parramatta stands, and pay our
+        respects to Elders past and present. Climate resilience should recognise First Nations leadership, knowledge and
+        connection to Country.</p>
+      <div class="grid3">
+        <div class="tile">
+          <h3>Community-led</h3>
+          <p>Communities should shape priorities and participation.</p>
+        </div>
+        <div class="tile">
+          <h3>Data sovereignty</h3>
+          <p>Cultural knowledge requires consent, governance and appropriate control.</p>
+        </div>
+        <div class="tile">
+          <h3>Country and waterways</h3>
+          <p>Explore opportunities for restoration and Indigenous-led environmental initiatives.</p>
+        </div>
+      </div>
+      <p style="font-size:12px;margin-top:18px">This is an early-stage concept, not an endorsed First Nations
+        partnership. Future work should be co-designed with appropriate Traditional Custodians and community
+        organisations.</p>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="wrap"><strong>GREEN GRID AI</strong> · Climate Intelligence. Community Resilience.<p>Independent MVP
+        demonstration, not affiliated with or endorsed by City of Parramatta Council. Raster reference mode uses one
+        interpolated baseline sample, not independent TUFLOW validation. Experimental AI mode uses entirely synthetic
+        training targets and does not represent observed or simulated local flood conditions. The street map is ©
+        OpenStreetMap contributors. Recommendations are illustrative, not engineering, emergency or planning advice.</p>
+    </div>
+  </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    let rainfallRecords = []; let rainfallLoadError = null;
+    const sample = {lat: -33.827221495786205, lng: 151.00731094266897, depth: 2.734}; const bounds = [[-33.83171749644788, 150.99339299908698], [-33.822828535078706, 151.02324556380842]]; const map = L.map('map', {scrollWheelZoom: true}).fitBounds(bounds, {padding: [20, 20]}); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '© OpenStreetMap contributors', maxZoom: 19}).addTo(map); L.rectangle(bounds, {color: '#209d78', weight: 2, fillOpacity: .035}).addTo(map); let marker = L.circleMarker([sample.lat, sample.lng], {radius: 9, color: '#fff', weight: 3, fillColor: '#159c6b', fillOpacity: 1}).addTo(map).bindPopup('Interpolated 5% AEP sample: 2.734 m predicted depth').openPopup(); let selected = {...sample}; let atSample = true;
+    const weightSpecs = [['safety', 'Community safety', 40], ['affordability', 'Affordability', 25], ['environment', 'Environmental benefit', 20], ['speed', 'Implementation speed', 15]]; document.getElementById('sliders').innerHTML = weightSpecs.map(([id, label, value]) => `<div class="field"><div class="sliderhead"><label for="${id}">${label}</label><b id="${id}Label">${value}</b></div><input type="range" id="${id}" min="0" max="100" value="${value}"></div>`).join('');
+    const candidates = [{name: 'Improve local drainage and inlet maintenance', desc: 'Inspect and maintain drainage assets; confirm any capacity constraints through an engineering review.', safety: 4, affordability: 5, environment: 3, speed: 5}, {name: 'Targeted flood barriers or property-level protection', desc: 'Investigate site-specific protection measures; consider flow diversion and neighbouring impacts.', safety: 5, affordability: 3, environment: 2, speed: 3}, {name: 'Nature-based detention and rain gardens', desc: 'Assess opportunities to slow runoff, with hydraulic, land and maintenance feasibility checks.', safety: 3, affordability: 3, environment: 5, speed: 2}, {name: 'Flood warning, signage and community preparedness', desc: 'Improve awareness and response planning; does not physically reduce flood depth.', safety: 5, affordability: 5, environment: 3, speed: 5}, {name: 'Detailed drainage and creek capacity investigation', desc: 'Commission investigation before major works; results may identify different interventions.', safety: 4, affordability: 3, environment: 4, speed: 2}];
+    const SUPPORTED_AI_DURATIONS = new Set([60, 90, 120]);
+    function refreshDurationOptions(preferred) {
+      const mode = document.getElementById('mode').value;
+      const select = document.getElementById('duration');
+      const previous = String(preferred ?? select.value ?? '90');
+      const all = [...new Map(rainfallRecords.map(r => [r.minutes, r.label])).entries()].sort((a, b) => a[0] - b[0]);
+      const choices = mode === 'synthetic' ? all.filter(([minutes]) => SUPPORTED_AI_DURATIONS.has(minutes)) : all;
+      select.replaceChildren();
+      for (const [minutes, label] of choices) {
+        const option = document.createElement('option'); option.value = String(minutes); option.textContent = label; select.appendChild(option);
+      }
+      if (choices.length) {
+        select.value = choices.some(([minutes]) => String(minutes) === previous) ? previous :
+          choices.some(([minutes]) => minutes === 90) ? '90' : String(choices[0][0]);
+      }
+      const detail = document.getElementById('scenarioAvailabilityDetail');
+      const notice = document.getElementById('scenarioAvailability');
+      if (mode === 'synthetic') {
+        detail.textContent = 'Only supported durations are selectable in Experimental AI mode. Other BOM durations can be viewed in Interpolated raster sample mode.';
+        notice.classList.remove('warning');
+      } else {
+        detail.textContent = 'Reference mode shows all BOM rainfall durations. Rainfall values are reference information only; the interpolated 5% AEP sample does not recalculate with duration.';
+        notice.classList.remove('warning');
+      }
+    }
+    function updateRainfall() {
+      const aep = Number(document.getElementById('aep').value);
+      const duration = Number(document.getElementById('duration').value);
+      const match = rainfallRecords.find(r => r.aep === aep && r.minutes === duration);
+      const value = document.getElementById('rainfallValue');
+      const meta = document.getElementById('rainfallMeta');
+      if (match) {value.textContent = `${match.mm.toFixed(1)} mm`; meta.textContent = `BOM design rainfall · ${match.label} · ${aep}% AEP`}
+      else {value.textContent = rainfallLoadError ? 'Rainfall file unavailable' : 'No rainfall value for this combination'; meta.textContent = rainfallLoadError || 'Check the selected duration and AEP';}
+    }
+    async function loadRainfall() {
+      try {
+        const response = await fetch('./rainfall_scenarios.csv', {cache: 'no-cache'});
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const csv = await response.text();
+        const lines = csv.trim().replace(/^\uFEFF/, '').split(/\r?\n/).filter(Boolean);
+        const headers = lines.shift().split(',').map(x => x.trim().toLowerCase());
+        const expected = ['duration', 'duration_minutes', 'aep_percent', 'rainfall_depth_mm'];
+        if (expected.some(h => !headers.includes(h))) throw new Error('CSV headers do not match the expected rainfall dataset');
+        rainfallRecords = lines.map(line => {
+          const cells = line.split(',').map(x => x.trim());
+          const get = h => cells[headers.indexOf(h)];
+          return {label: get('duration'), minutes: Number(get('duration_minutes')), aep: Number(get('aep_percent')), mm: Number(get('rainfall_depth_mm'))};
+        }).filter(r => Number.isFinite(r.minutes) && Number.isFinite(r.aep) && Number.isFinite(r.mm));
+        if (!rainfallRecords.length) throw new Error('CSV contains no valid rainfall records');
+        refreshDurationOptions('90');
+        updateRainfall();
+      } catch (err) {rainfallLoadError = `Unable to load rainfall_scenarios.csv (${err.message}). Ensure the CSV is deployed beside index.html.`; updateRainfall();}
+    }
+    let syntheticRows = [], syntheticError = null, syntheticCircles = [];
+    const EARTH = 111320;
+    function nearestSynthetic(lat, lng) {let best = null, dist = Infinity; for (const r of syntheticRows) {const dy = (r.latitude - lat) * EARTH, dx = (r.longitude - lng) * EARTH * Math.cos(lat * Math.PI / 180), d = Math.hypot(dx, dy); if (d < dist) {dist = d; best = r} } return dist <= 100 ? best : null}
+    function update() {
+      updateRainfall(); const mode = document.getElementById('mode').value, aep = Number(document.getElementById('aep').value), duration = Number(document.getElementById('duration').value), threshold = Number(document.getElementById('threshold').value);
+      document.getElementById('thresholdLabel').textContent = threshold.toFixed(2) + ' m'; document.getElementById('coordinates').textContent = selected.lat.toFixed(6) + ', ' + selected.lng.toFixed(6);
+      let depth = null, context = '', status = '';
+      if (mode === 'reference') {
+        if (atSample && aep === 5) {depth = sample.depth; context = 'Interpolated 5% AEP baseline sample (not independent TUFLOW output)'; status = 'Reference value at the interpolated sample location only. Other locations and AEPs are not yet connected.'}
+        else {context = 'TUFLOW reference unavailable'; status = 'No raster lookup for this location and scenario. This does not mean flood-free.'}
+      } else {
+        const point = nearestSynthetic(selected.lat, selected.lng);
+        if (syntheticError) {context = 'Synthetic dataset unavailable'; status = syntheticError}
+        else if (point) {
+          const r = syntheticRows.find(x => x.cell_id === point.cell_id && x.aep_percent === aep && x.duration_minutes === duration);
+          if (r) {depth = r.predicted_depth_m; context = 'EXPERIMENTAL — synthetic formula-trained AI'; status = `Synthetic scenario at grid point ${r.cell_id}. This is not a TUFLOW prediction, measured depth, or a safety assessment. Nearest synthetic point used (within 100 m).`}
+          else {context = 'Synthetic scenario unavailable'; status = 'This duration/AEP combination is not present in the synthetic training dataset. Try 60, 90 or 120 minutes.'}
+        } else {context = 'Outside synthetic sample coverage'; status = 'No synthetic sample point within 100 m. This is not evidence of a flood-free location.'}
+      }
+      const known = depth !== null;
+      document.getElementById('depthValue').textContent = known ? depth.toFixed(3) + ' m' : 'Not available';
+      document.getElementById('depthContext').textContent = context;
+      document.getElementById('status').className = 'callout ' + (mode === 'synthetic' || !known ? 'warning' : '');
+      document.getElementById('status').textContent = status + (known ? depth >= threshold ? ` The displayed value is above the selected ${threshold.toFixed(2)} m screening threshold.` : ` The displayed value is below the selected ${threshold.toFixed(2)} m screening threshold.` : '');
+      document.getElementById('actionExplanation').textContent = known && depth >= threshold ? 'Illustrative rankings based on adjustable weights; not site-engineered or Council-approved.' : 'No action ranking for this selection.';
+      let weights = {}; weightSpecs.forEach(([id]) => {weights[id] = Number(document.getElementById(id).value); document.getElementById(id + 'Label').textContent = weights[id]}); let total = Object.values(weights).reduce((a, b) => a + b, 0);
+      document.getElementById('actions').innerHTML = known && depth >= threshold ? candidates.map(a => ({...a, score: total ? 100 * Object.keys(weights).reduce((sum, k) => sum + weights[k] * a[k] / 5, 0) / total : 0})).sort((a, b) => b.score - a.score).map((a, i) => `<div class="action"><div class="actiontop"><h4>${i + 1}. ${a.name}</h4><span class="score">${a.score.toFixed(0)}/100</span></div><p>${a.desc}</p><span class="tag">${mode === 'synthetic' ? 'Synthetic scenario · ' : ''}Illustrative score · feasibility review required</span></div>`).join('') : '<div class="callout">No action ranking for this selection.</div>';
+    }
+    async function loadSynthetic() {
+      try {
+        const response = await fetch('./synthetic_predictions.json', {cache: 'no-cache'}); if (!response.ok) throw Error(`HTTP ${response.status}`); const data = await response.json(); syntheticRows = data.records;
+        const unique = new Map(); for (const r of syntheticRows) if (!unique.has(r.cell_id)) unique.set(r.cell_id, r);
+        for (const r of unique.values()) syntheticCircles.push(L.circleMarker([r.latitude, r.longitude], {radius: 2.6, color: '#0e7490', weight: 0, fillColor: '#0e7490', fillOpacity: .48, interactive: false}).addTo(map));
+        update();
+      } catch (err) {syntheticError = `Could not load synthetic_predictions.json (${err.message}). Upload the complete folder to Netlify.`; update()}
+    }
+    map.on('click', e => {selected = {lat: e.latlng.lat, lng: e.latlng.lng}; atSample = Math.hypot((selected.lat - sample.lat) * EARTH, (selected.lng - sample.lng) * EARTH * Math.cos(selected.lat * Math.PI / 180)) < 1; marker.setLatLng(e.latlng).bindPopup('Selected location').openPopup(); update()});
+    document.querySelectorAll('select,input[type=range]').forEach(el => el.addEventListener('input', update));
+    document.getElementById('mode').addEventListener('change', () => {refreshDurationOptions(); update(); renderSimulator(false)});
+    const reset = document.createElement('button'); reset.textContent = 'Return to interpolated sample'; reset.className = 'btn'; reset.style.cssText = 'margin-top:10px;padding:9px 13px;font-size:12px'; document.querySelector('.maptop').appendChild(reset);
+    reset.addEventListener('click', () => {selected = {...sample}; atSample = true; document.getElementById('mode').value = 'reference'; document.getElementById('aep').value = '5'; marker.setLatLng([sample.lat, sample.lng]).bindPopup('Interpolated 5% AEP sample: 2.734 m predicted depth').openPopup(); map.panTo([sample.lat, sample.lng]); update(); renderSimulator(false)});
+
+    // VERSION 2: exact exported RandomForest inference, lazily loaded.
+    let browserForest = null, spatialByCell = new Map(), simCell = null, modifiedValues = null;
+    const envSpecs = [
+      ['impervious_pct', 'Impervious surface', '%', 0, 100, 1],
+      ['soil_infiltration_index_0_100', 'Soil infiltration index', ' / 100', 0, 100, 1],
+      ['drainage_capacity_index_0_100', 'Drainage capacity index', ' / 100', 0, 100, 1],
+      ['slope_pct', 'Slope', '%', 0, 10, .01]
+    ];
+    function forestPredict(input) {
+      if (!browserForest) return null;
+      const row = browserForest.features.map(k => Math.fround(Number(input[k])));
+      if (row.some(v => !Number.isFinite(v))) return null;
+      let total = 0;
+      for (const tree of browserForest.trees) {
+        let node = 0;
+        while (tree.children_left[node] !== -1) {
+          const f = tree.feature[node];
+          node = row[f] <= tree.threshold[node] ? tree.children_left[node] : tree.children_right[node];
+        }
+        total += tree.value[node];
+      }
+      return total / browserForest.trees.length;
+    }
+    function rainfallForScenario() {
+      const aep = Number(document.getElementById('aep').value), duration = Number(document.getElementById('duration').value);
+      const match = rainfallRecords.find(r => r.aep === aep && r.minutes === duration);
+      return match ? {duration_minutes: duration, aep_percent: aep, design_rainfall_mm: match.mm} : null;
+    }
+    function currentSimCell() {
+      const point = nearestSynthetic(selected.lat, selected.lng);
+      return point && spatialByCell.has(point.cell_id) ? point.cell_id : null;
+    }
+    function renderEnvironmentControls() {
+      const container = document.getElementById('environmentControls');
+      container.innerHTML = envSpecs.map(([key, label, unit, min, max, step]) => `<div class="tile" style="padding:13px"><label for="env_${key}" style="font-size:13px;font-weight:700">${label}</label><div class="sliderhead"><span class="small">Synthetic scenario</span><b id="val_${key}"></b></div><input style="width:100%;accent-color:#28866c" type="range" id="env_${key}" min="${min}" max="${max}" step="${step}"></div>`).join('');
+      for (const [key, label, unit] of envSpecs) {
+        document.getElementById('env_' + key).addEventListener('input', e => {
+          modifiedValues[key] = Number(e.target.value);
+          document.getElementById('val_' + key).textContent = Number(e.target.value).toFixed(key === 'slope_pct' ? 2 : 0) + unit;
+          renderSimulator(false);
+        });
+      }
+    }
+    function renderSimulator(forceReset = false) {
+      if (!browserForest) return;
+      const status = document.getElementById('simStatus'), cell = currentSimCell();
+      if (!cell) {status.textContent = 'Choose a location within 100 m of a blue synthetic sample point. No prediction is available outside sample coverage.'; for (const id of ['basePred', 'modPred', 'deltaPred']) document.getElementById(id).textContent = '—'; return;}
+      if (forceReset || cell !== simCell || !modifiedValues) {
+        simCell = cell; modifiedValues = {...spatialByCell.get(cell)};
+        for (const [key, , unit] of envSpecs) {
+          document.getElementById('env_' + key).value = modifiedValues[key];
+          document.getElementById('val_' + key).textContent = Number(modifiedValues[key]).toFixed(key === 'slope_pct' ? 2 : 0) + unit;
+        }
+      }
+      const rain = rainfallForScenario();
+      if (!rain) {status.textContent = 'The selected rainfall duration and AEP have no reference rainfall value. Choose a supported combination.'; return;}
+      const baseline = {...spatialByCell.get(cell), ...rain};
+      const modified = {...baseline, ...Object.fromEntries(envSpecs.map(([key]) => [key, modifiedValues[key]]))};
+      const b = forestPredict(baseline), m = forestPredict(modified);
+      if (b === null || m === null) {status.textContent = 'Model inputs invalid or incomplete.'; return;}
+      document.getElementById('basePred').textContent = b.toFixed(3) + ' m';
+      document.getElementById('modPred').textContent = m.toFixed(3) + ' m';
+      document.getElementById('deltaPred').textContent = (m - b >= 0 ? '+' : '') + (m - b).toFixed(3) + ' m';
+      document.getElementById('simLocation').textContent = `Synthetic cell ${cell} · ${rain.duration_minutes} min · ${rain.aep_percent}% AEP · ${rain.design_rainfall_mm.toFixed(1)} mm rainfall`;
+      status.textContent = 'Experimental synthetic model loaded. Values are illustrative, not validated TUFLOW or real flood predictions.';
+    }
+    async function loadBrowserForest() {
+      const button = document.getElementById('loadModel'), status = document.getElementById('simStatus');
+      button.disabled = true; button.textContent = 'Loading model…';
+      try {
+        const [mr, sr] = await Promise.all([fetch('./flood_model_browser.json'), fetch('./synthetic_spatial_features.csv')]);
+        if (!mr.ok) throw new Error(`flood_model_browser.json HTTP ${mr.status}. Copy the JSON exported on your PC into the website folder.`);
+        if (!sr.ok) throw new Error(`synthetic_spatial_features.csv HTTP ${sr.status}`);
+        const model = await mr.json();
+        const expected = ['duration_minutes', 'aep_percent', 'design_rainfall_mm', 'impervious_pct', 'soil_infiltration_index_0_100', 'drainage_capacity_index_0_100', 'slope_pct'];
+        if (model.model_type !== 'RandomForestRegressor' || !Array.isArray(model.trees) || model.trees.length !== 200 || JSON.stringify(model.features) !== JSON.stringify(expected)) throw new Error('Unexpected model schema. Use your exported 200-tree JSON.');
+        const csv = (await sr.text()).trim().split(/\r?\n/); const head = csv.shift().split(',');
+        for (const line of csv) {const vals = line.split(','); const r = Object.fromEntries(head.map((h, i) => [h, vals[i]])); for (const [key] of envSpecs) r[key] = Number(r[key]); spatialByCell.set(r.cell_id, r)}
+        browserForest = model; renderEnvironmentControls(); document.getElementById('simBody').classList.remove('hidden'); button.textContent = 'Model loaded';
+        renderSimulator(true);
+      } catch (err) {button.disabled = false; button.textContent = 'Retry loading model'; status.textContent = 'Could not load simulator: ' + err.message}
+    }
+    document.getElementById('loadModel').addEventListener('click', loadBrowserForest);
+    document.getElementById('resetEnvironment').addEventListener('click', () => renderSimulator(true));
+    map.on('click', () => renderSimulator(false));
+    document.getElementById('aep').addEventListener('change', () => renderSimulator(false));
+    document.getElementById('duration').addEventListener('change', () => renderSimulator(false));
 
 
-// Climate Risk Evidence Layer: real provided TUFLOW depth rasters, sampled ~5m preview.
-let evidenceGrid=null,evidenceLoadError=null;
-function renderEvidence(){
- const hazard=document.getElementById('evHazard'),detail=document.getElementById('evHazardDetail'),conclusion=document.getElementById('evConclusion'),source=document.getElementById('evSource');
- if(!hazard)return;
- const aep=String(document.getElementById('aep').value);
- if(!evidenceGrid){hazard.textContent=evidenceLoadError?'Unavailable':'Loading…';detail.textContent=evidenceLoadError||'Loading flood raster evidence';conclusion.textContent='A hazard result is needed before discussing location-specific flood risk.';source.textContent='';return;}
- const g=evidenceGrid.grid,scenario=evidenceGrid.scenarios[aep];
- const col=Math.floor((selected.lng-g.west)/g.step_lon),row=Math.floor((g.north-selected.lat)/g.step_lat);
- if(!scenario||row<0||col<0||row>=g.height||col>=g.width){hazard.textContent='Outside coverage';detail.textContent='This point is outside the sampled raster grid.';conclusion.textContent='No conclusion about flood hazard or climate risk can be made here.';source.textContent='';return;}
- const cm=scenario.depth_cm[row*g.width+col];
- source.textContent='Source: '+scenario.source_file+' · '+aep+'% AEP · approximately 5 m nearest-neighbour preview';
- if(cm<0){hazard.textContent='No raster value';detail.textContent='NoData / no valid modelled depth at this sampled cell.';conclusion.textContent='NoData is not proof of no flood hazard. Confirm against the original raster and flood study.';return;}
- const depth=cm/100;
- hazard.textContent=depth.toFixed(2)+' m';
- detail.textContent='Modelled flood depth at the selected approximate raster cell · '+aep+'% AEP design scenario.';
- conclusion.textContent=depth>0?'Evidence of modelled flood hazard at this location. Actual climate-related risk cannot be ranked until exposed people/assets, vulnerability and relevant future-climate scenarios are assessed.':'No positive depth in this sampled cell for the selected scenario. This does not prove the location is flood-free under other events or conditions.';
-}
-async function loadEvidence(){
- try{const r=await fetch('./tuflow_evidence_grid.json',{cache:'no-cache'});if(!r.ok)throw Error('HTTP '+r.status);evidenceGrid=await r.json();renderEvidence();}
- catch(e){evidenceLoadError='Unable to load tuflow_evidence_grid.json ('+e.message+'). Include it in the Netlify deployment.';renderEvidence();}
-}
-document.getElementById('evToggle').addEventListener('click',()=>{const e=document.getElementById('evMethod');e.classList.toggle('hidden');document.getElementById('evToggle').textContent=e.classList.contains('hidden')?'Show evidence method and limitations':'Hide evidence method and limitations';});
-map.on('click',renderEvidence);
-document.getElementById('aep').addEventListener('change',renderEvidence);
-reset.addEventListener('click',renderEvidence);
-loadEvidence();
+    // Climate Risk Evidence Layer: real provided TUFLOW depth rasters, sampled ~5m preview.
+    let evidenceGrid = null, evidenceLoadError = null;
+    function renderEvidence() {
+      const hazard = document.getElementById('evHazard'), detail = document.getElementById('evHazardDetail'), conclusion = document.getElementById('evConclusion'), source = document.getElementById('evSource');
+      if (!hazard) return;
+      const aep = String(document.getElementById('aep').value);
+      if (!evidenceGrid) {hazard.textContent = evidenceLoadError ? 'Unavailable' : 'Loading…'; detail.textContent = evidenceLoadError || 'Loading flood raster evidence'; conclusion.textContent = 'A hazard result is needed before discussing location-specific flood risk.'; source.textContent = ''; return;}
+      const g = evidenceGrid.grid, scenario = evidenceGrid.scenarios[aep];
+      const col = Math.floor((selected.lng - g.west) / g.step_lon), row = Math.floor((g.north - selected.lat) / g.step_lat);
+      if (!scenario || row < 0 || col < 0 || row >= g.height || col >= g.width) {hazard.textContent = 'Outside coverage'; detail.textContent = 'This point is outside the sampled raster grid.'; conclusion.textContent = 'No conclusion about flood hazard or climate risk can be made here.'; source.textContent = ''; return;}
+      const cm = scenario.depth_cm[row * g.width + col];
+      source.textContent = 'Source: ' + scenario.source_file + ' · ' + aep + '% AEP · approximately 5 m nearest-neighbour preview';
+      if (cm < 0) {hazard.textContent = 'No raster value'; detail.textContent = 'NoData / no valid modelled depth at this sampled cell.'; conclusion.textContent = 'NoData is not proof of no flood hazard. Confirm against the original raster and flood study.'; return;}
+      const depth = cm / 100;
+      hazard.textContent = depth.toFixed(2) + ' m';
+      detail.textContent = 'Modelled flood depth at the selected approximate raster cell · ' + aep + '% AEP design scenario.';
+      conclusion.textContent = depth > 0 ? 'Evidence of modelled flood hazard at this location. Actual climate-related risk cannot be ranked until exposed people/assets, vulnerability and relevant future-climate scenarios are assessed.' : 'No positive depth in this sampled cell for the selected scenario. This does not prove the location is flood-free under other events or conditions.';
+    }
+    async function loadEvidence() {
+      try {const r = await fetch('./tuflow_evidence_grid.json', {cache: 'no-cache'}); if (!r.ok) throw Error('HTTP ' + r.status); evidenceGrid = await r.json(); renderEvidence();}
+      catch (e) {evidenceLoadError = 'Unable to load tuflow_evidence_grid.json (' + e.message + '). Include it in the Netlify deployment.'; renderEvidence();}
+    }
+    document.getElementById('evToggle').addEventListener('click', () => {const e = document.getElementById('evMethod'); e.classList.toggle('hidden'); document.getElementById('evToggle').textContent = e.classList.contains('hidden') ? 'Show evidence method and limitations' : 'Hide evidence method and limitations';});
+    map.on('click', renderEvidence);
+    document.getElementById('aep').addEventListener('change', renderEvidence);
+    reset.addEventListener('click', renderEvidence);
+    loadEvidence();
 
-update();loadRainfall().then(()=>renderSimulator(false));loadSynthetic();
-</script></body></html>
+    update(); loadRainfall().then(() => renderSimulator(false)); loadSynthetic();
+  </script>
+</body>
+
+</html>
