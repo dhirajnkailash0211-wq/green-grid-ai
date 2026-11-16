@@ -948,6 +948,83 @@
 
     update(); loadRainfall().then(() => renderSimulator(false)); loadSynthetic();
   </script>
+  <!-- GREEN GRID AI: COUNCIL-FRIENDLY UI REDESIGN. Paste once immediately BEFORE </body>. -->
+<style id="gg-council-redesign">
+:root{--forest:#12392e;--leaf:#a8e063;--cream:#f5f8f5;--muted:#51665b;--line:#dce7df}
+body{background:var(--cream);font-size:16px;line-height:1.6}
+.wrap{width:min(1320px,calc(100% - 32px))}
+.navin{min-height:64px}.links{gap:14px;flex-wrap:wrap}.links a{font-weight:650}
+.hero{padding:44px 0 48px}.hero h1{font-size:clamp(32px,4.5vw,54px);max-width:820px;margin:10px 0 14px}.hero p{font-size:17px;max-width:760px}.hero .sub{font-size:12px}
+.section{padding:32px 0}.section h2{font-size:clamp(24px,3vw,34px)}
+.panel{border-radius:18px;box-shadow:0 4px 20px rgba(15,50,30,.05)}
+.explorer{grid-template-columns:minmax(265px,320px) minmax(0,1fr);align-items:start;gap:14px;margin-top:18px}
+.explorer .panel{min-width:0}.map{height:min(60vh,560px);min-height:390px}
+.field label{font-size:14px}.field select{min-height:44px}
+#simulator{padding-top:16px!important;scroll-margin-top:85px}#simulator .panel{border:2px solid #b9d9c5}
+#simulator .grid3{gap:12px}#simulator .metric strong{font-size:clamp(20px,2.3vw,30px)}
+#simulator .tile{background:#f7faf8}#environmentControls{gap:10px}
+#simulator input[type=range]{width:100%;accent-color:#25765b}
+#vision,#country{padding:30px 0}.country .grid3{gap:12px}
+.gg-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+.gg-step{padding:13px 15px;background:#fff;border:1px solid var(--line);border-radius:12px;font-size:14px}
+.gg-step b{display:block;color:#164a37}.gg-note{padding:12px 14px;background:#edf5ee;border-left:4px solid #36866a;border-radius:8px;font-size:13px;margin:12px 0}
+.gg-details{border:1px solid var(--line);border-radius:12px;background:white;padding:12px 16px;margin:16px 0;font-size:14px}
+.gg-details summary{cursor:pointer;font-weight:750}
+.gg-details p{margin:10px 0 0}.gg-anchor{scroll-margin-top:90px}
+@media(max-width:850px){.explorer{grid-template-columns:1fr}.gg-steps{grid-template-columns:1fr}.map{height:390px}.links{gap:8px;font-size:12px}.hero{padding:30px 0}.section{padding:24px 0}}
+@media(max-width:520px){.wrap{width:calc(100% - 24px)}.panel{padding:14px}.navin{gap:8px}.brand{font-size:16px}.links a{font-size:11px}.map{height:350px;min-height:350px}}
+</style>
+<script id="gg-council-redesign-script">
+(function(){
+  'use strict';
+  const $=s=>document.querySelector(s);
+  const setText=(sel,text)=>{const el=$(sel);if(el)el.textContent=text;};
+  const replaceLabel=(forId,text)=>{const el=$('label[for="'+forId+'"]');if(el)el.textContent=text;};
+  // Keep every existing input ID, option value, handler, map, prediction function and data source intact.
+  const hero=$('.hero h1');if(hero)hero.textContent='Understand flood risks. Explore better solutions.';
+  const heroP=$('.hero p');if(heroP)heroP.textContent='Explore flooding in Parramatta, compare rainfall scenarios and investigate options for a more resilient community.';
+  const eyebrow=$('.hero .eyebrow');if(eyebrow)eyebrow.textContent='Green Grid AI · Parramatta flood explorer';
+  setText('#explorer h2','Explore flooding in your area');
+  const intro=$('#explorer .wrap > p.muted');if(intro)intro.textContent='Choose a location on the map, select rainfall conditions and review the available information. You can also try experimental scenarios to explore possible changes.';
+  const steps=document.createElement('div');steps.className='gg-steps';steps.innerHTML='<div class="gg-step"><b>1 · Choose a location</b>Click the map to explore an area.</div><div class="gg-step"><b>2 · Choose rainfall</b>Select a rainfall scenario and duration.</div><div class="gg-step"><b>3 · Explore options</b>Compare experimental estimates and council actions.</div>';
+  if(intro)intro.after(steps);
+  replaceLabel('mode','What information would you like to see?');
+  replaceLabel('aep','How rare is the rainfall event?');
+  replaceLabel('duration','How long does the rainfall last?');
+  const mode=$('#mode');if(mode){for(const o of mode.options){if(o.value==='synthetic')o.textContent='Experimental AI estimates';if(o.value==='reference')o.textContent='Reference flood information (limited coverage)';}}
+  const aep=$('#aep');if(aep){for(const o of aep.options){const pct=Number(o.value);if(pct===20)o.textContent='More frequent event (20% chance each year)';if(pct===5)o.textContent='Less frequent event (5% chance each year)';if(pct===2)o.textContent='Rare event (2% chance each year)';if(pct===1)o.textContent='Very rare event (1% chance each year)';}}
+  const map=$('#map');if(map){map.setAttribute('aria-label','Interactive map: choose a location in Parramatta');}
+  const sim=$('#simulator');if(sim){
+    const wrap=$('#explorer .wrap');const explorerGrid=$('#explorer .explorer');
+    if(wrap&&explorerGrid)explorerGrid.after(sim);
+    setText('#simulator h2','Explore what could change');
+    const simEyebrow=$('#simulator .eyebrow');if(simEyebrow)simEyebrow.textContent='Experimental what-if tool';
+    const p=$('#simulator .panel > p.muted');if(p)p.textContent='Choose a blue sample point on the map, then adjust the conditions below. Compare the original and changed estimates. These are experimental results, not verified flood forecasts.';
+    const btn=$('#loadModel');if(btn)btn.textContent='Start experimental comparison';
+    const metrics=$$('#simulator .metric .small');
+    if(metrics[0])metrics[0].textContent='Original estimate · experimental';
+    if(metrics[1])metrics[1].textContent='Changed estimate · experimental';
+    if(metrics[2])metrics[2].textContent='Difference · experimental';
+  }
+  function $$(sel){return [...document.querySelectorAll(sel)]}
+  const controls=$('#environmentControls');if(controls){
+    const rename=()=>{
+      const labels={impervious_pct:'Roads and hard surfaces',soil_infiltration_index_0_100:'How well the ground absorbs water',drainage_capacity_index_0_100:'How well drains handle rainfall',slope_pct:'Land steepness'};
+      for(const [id,text] of Object.entries(labels)){const label=$('label[for="env_'+id+'"]');if(label)label.textContent=text;}
+    };
+    new MutationObserver(rename).observe(controls,{childList:true,subtree:true});rename();
+  }
+  const actionsTitle=$('#actions')?.closest('.panel')?.querySelector('h3');
+  // Keep recommendation calculations unchanged; improve only visible wording where unambiguous.
+  const notice=document.createElement('div');notice.className='gg-note';notice.textContent='Important: Reference flood information and experimental AI estimates are different. Experimental changes do not demonstrate that a proposed intervention will reduce real flood levels.';
+  if(sim)sim.querySelector('.panel')?.appendChild(notice);
+  const details=document.createElement('details');details.className='gg-details';details.innerHTML='<summary>How does Green Grid AI work?</summary><p>Green Grid AI displays available flood reference information and a separate experimental machine-learning model. The experimental model uses rainfall and synthetic environmental inputs to compare scenarios. Its predictions have not been validated against local flood outcomes. Council actions are illustrative options for further assessment, not engineering recommendations.</p>';
+  if(sim)sim.querySelector('.panel')?.appendChild(details);
+  const vision=$('#vision h2');if(vision)vision.textContent='What else could Green Grid AI support?';
+  const country=$('#country');if(country)country.classList.add('gg-anchor');
+  // Existing navigation anchors are preserved, including #explorer, #simulator, #vision and #country.
+})();
+</script>
 </body>
 
 </html>
